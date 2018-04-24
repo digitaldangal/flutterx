@@ -25,7 +25,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       onTap: (int numTab) {
         setState(() {
           widget.currentTab = numTab;
-          widget.callback?.tabSelected(widget.currentTab, title: 'OMG:$numTab');
+          widget.callback?.tabSelected(widget.currentTab);
         });
       },
       iconSize: 20.0,
@@ -43,7 +43,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         new BottomNavigationBarItem(
             //numTab 2
             icon: new Icon(Icons.message),
-            title: new Text("Messager")),
+            title: new Text("Messenger")),
 //        new BottomNavigationBarItem( //numTab 2
 //            icon: new Icon(Icons.share),
 //            title: new Text("Lucky"),
