@@ -39,7 +39,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         new BottomNavigationBarItem(
             //numTab 1
             icon: new Icon(Icons.train),
-            title: new Text("Traning")),
+            title: new Text("Training")),
         new BottomNavigationBarItem(
             //numTab 2
             icon: new Icon(Icons.message),
