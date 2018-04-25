@@ -32,6 +32,9 @@ class _MeState extends State<MePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Text('Me');
+    return new ListView(
+      padding: new EdgeInsets.only(top: 32.0, bottom: 8.0),
+      children: [new Text('Training'),new Divider(height: 16.0,color: Colors.grey,indent:0.0 ,) , new Text('Training'),new Divider(height: 16.0,color: Colors.grey,),new Text('Training')],
+    );
   }
 }

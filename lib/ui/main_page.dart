@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MainPage>
 
     BasePage page = widget.getTabPageView();
     return new Scaffold(
+      backgroundColor:  new Color(0xFFE0E0E4),
       appBar: new AppBar(
         title: new Text(page.navTitle),
       ),

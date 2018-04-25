@@ -1,7 +1,7 @@
 
 enum MainTab {
   News,
-  Messenger,
   Training,
+  Messenger,
   Me,
 }

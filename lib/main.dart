@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'FlutterX333',
+      color: new Color(0xff00BBF8),
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
