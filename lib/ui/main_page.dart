@@ -10,7 +10,13 @@ import 'package:flutterx/widgets/flutterx_bottom_navigation_bar.dart';
 class MainPage extends StatefulWidget {
   static const String routeMain = "/";
 
-  static const String routeTraining = "/training";
+
+  static void registerPage() {
+    NewsPage.registerPage();
+    MePage.registerPage();
+    MessengerPage.registerPage();
+    TrainingPage.registerPage();
+  }
   static const String routeMessenger = "/messenger";
   static const String routeNews = "/news";
   static const String routeMe = "/me";

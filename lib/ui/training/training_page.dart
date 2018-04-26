@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutterx/ui/base_page.dart';
 import 'package:flutterx/ui/common.dart';
 import 'package:flutterx/widgets/listview_section_separator.dart';
+import 'package:flutterx/ui/training/course_detail.dart';
 
-class TrainingPage extends BasePage {
+class TrainingPage extends BasePage implements IPageRegister {
+
+  static void registerPage() {
+    FlutterXRoute.pageRoute[CourseDetailPage.routeTrainingCourse] = (BuildContext context) => new CourseDetailPage();
+  }
+
+
   TrainingPage(MainTab tab) : super(tab) {
     this.title = 'Training';
   }
@@ -64,12 +71,15 @@ class _TrainingState extends State<TrainingPage> {
                 size: 13.0,
                 color: Colors.green,
               ),
+              onTap: (){
+                Navigator.of(context).pushNamed(CourseDetailPage.routeTrainingCourse);
+              },
             ),
           ),
-        new ListViewSectionSeparator(
-          height: 38.0,
-          title: 'Current',
-        ),
+          new ListViewSectionSeparator(
+            height: 38.0,
+            title: 'Current',
+          ),
           new Container(
             color: Colors.white,
             child: new ListTile(
@@ -93,83 +103,158 @@ class _TrainingState extends State<TrainingPage> {
             height: 38.0,
             title: 'Courses List',
           ),
-          new Column(
-            children: <Widget>[
-              new Container(
-                color: Colors.white,
-                child: new ListTile(
-                  leading: new Icon(
-                    Icons.inbox,
-                    size: 18.0,
-                    color: Colors.green,
-                  ),
-                  dense: true,
-                  isThreeLine: true,
-                  title: new Text('Current Course Name1'),
-                  subtitle: new Text('Progress: 0 % (0 / 5)'),
-                  trailing: new Icon(
-                    Icons.arrow_forward_ios,
-                    size: 13.0,
-                    color: Colors.green,
-                  ),
-                ),
-              ),
-              new Divider(
-                height: 0.5,
-                indent: 16.0,
-              ),
-              new Container(
-                color: Colors.white,
-                child: new ListTile(
-                  leading: new Icon(
-                    Icons.inbox,
-                    size: 18.0,
-                    color: Colors.green,
-                  ),
-                  dense: true,
-                  isThreeLine: true,
-                  title: new Text('Current Course Name2'),
-                  subtitle: new Text('Progress: 80 % (4 / 5)'),
-                  trailing: new Icon(
-                    Icons.arrow_forward_ios,
-                    size: 13.0,
-                    color: Colors.green,
-                  ),
-                ),
-              ),
-              new Divider(
-                height: 0.5,
-                indent: 16.0,
-              ),
-              new Container(
-                color: Colors.white,
-                child: new ListTile(
-                  leading: new Icon(
-                    Icons.inbox,
-                    size: 18.0,
-                    color: Colors.green,
-                  ),
-                  dense: true,
-                  isThreeLine: true,
-                  title: new Text('Current Course Name3'),
-                  subtitle: new Text('Progress: 80 % (4 / 5)'),
-                  trailing: new Icon(
-                    Icons.arrow_forward_ios,
-                    size: 13.0,
-                    color: Colors.green,
-                  ),
-                ),
-              ),
-
-              new ListViewSectionSeparator(
-                height: 38.0,
-                title: 'Courses List',
-              ),
-
-            ],
+          _newCourse(),
+          new ListViewSectionSeparator(
+            height: 38.0,
+            title: 'Finished',
           ),
+          _finishedCourse(),
         ],
       ),
+    );
+  }
+
+  Widget _newCourse() {
+    return new Column(
+      children: <Widget>[
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name1'),
+            subtitle: new Text('Progress: 0 % (0 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+        new Divider(
+          height: 0.5,
+          indent: 16.0,
+        ),
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name2'),
+            subtitle: new Text('Progress: 80 % (4 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+        new Divider(
+          height: 0.5,
+          indent: 16.0,
+        ),
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name3'),
+            subtitle: new Text('Progress: 80 % (4 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _finishedCourse() {
+    return new Column(
+      children: <Widget>[
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name1'),
+            subtitle: new Text('Progress: 0 % (0 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+        new Divider(
+          height: 0.5,
+          indent: 16.0,
+        ),
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name2'),
+            subtitle: new Text('Progress: 80 % (4 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+        new Divider(
+          height: 0.5,
+          indent: 16.0,
+        ),
+        new Container(
+          color: Colors.white,
+          child: new ListTile(
+            leading: new Icon(
+              Icons.inbox,
+              size: 18.0,
+              color: Colors.green,
+            ),
+            dense: true,
+            isThreeLine: true,
+            title: new Text('Current Course Name3'),
+            subtitle: new Text('Progress: 80 % (4 / 5)'),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 13.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

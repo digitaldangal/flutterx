@@ -16,6 +16,9 @@ class NewsPage extends BasePage {
   String get navTitle {
     return this.title;
   }
+
+  static void registerPage() {
+  }
 }
 
 class _NewsState extends State<NewsPage> {
@@ -34,4 +37,7 @@ class _NewsState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return new Text('News');
   }
+
+
+
 }

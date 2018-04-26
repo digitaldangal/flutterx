@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterx/ui/base_page.dart';
 import 'package:flutterx/ui/common.dart';
 
-class MessengerPage extends BasePage {
+class MessengerPage extends BasePage implements IPageRegister{
   MessengerPage(MainTab tab) : super(tab) {
     this.title = 'Messenger';
   }
@@ -15,6 +15,9 @@ class MessengerPage extends BasePage {
   @override
   String get navTitle {
     return this.title;
+  }
+
+  static void registerPage() {
   }
 }
 
@@ -34,4 +37,6 @@ class _MessengerState extends State<MessengerPage> {
   Widget build(BuildContext context) {
     return new Text('Messenger');
   }
+
+
 }
