@@ -7,6 +7,8 @@ import 'package:flutterx/ui/news/news_page.dart';
 import 'package:flutterx/ui/training/training_page.dart';
 import 'package:flutterx/widgets/flutterx_bottom_navigation_bar.dart';
 
+import 'package:flutterx/data/data_facade.dart';
+
 class MainPage extends StatefulWidget {
   static const String routeMain = "/";
 
@@ -81,8 +83,11 @@ class _MyHomePageState extends State<MainPage>
   @override
   void tabSelected(int index, {String title}) {
     print('selected: $index');
+    DataFacade.shareInstance().loadingHomeChallenges();
     setState(() {
       widget.pageIndex = MainTab.values[index];
     });
+
+
   }
 }

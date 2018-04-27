@@ -9,11 +9,23 @@ class User {
     this.level,
   });
 
-  final String userId;
-  final String name;
-  final String email;
-  final String avatarUrl;
-  final int level;
+  String userId;
+  String name;
+  String email;
+  String avatarUrl;
+  int level;
+
+  User.fromJson(Map<String, dynamic> json)
+      : userId = json['userId'],
+        name = json['name'],
+        email = json['email'];
+
+  Map<String, dynamic> toJson() =>
+      {
+        'userId': userId,
+        'name': name,
+        'email': email,
+      };
 
   @override
   bool operator ==(Object other) =>
