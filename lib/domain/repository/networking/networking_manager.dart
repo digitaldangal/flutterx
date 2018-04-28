@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutterx/repository/networking/http_constants.dart';
+import 'package:flutterx/domain/repository/networking/http_constants.dart';
 import 'package:http/http.dart' as Http;
 
-typedef void HandleNetworkingSuccess(dynamic result);
+typedef void HandleNetworkingSuccess(String jsonString);
 typedef void HandleNetworkingFailed(NetworkingException exception);
 
 class IDataDisposeListener {
@@ -20,12 +20,12 @@ class IDataDisposeListener {
       if (code == HttpConstants.OK) {
         _networkLog("json: $jsonObj");
         if (handleSuccess != null) {
-          handleSuccess((jsonObj['result'] as String));
+          handleSuccess( json.encode(jsonObj['result']));
         }
       } else {
         if (handleFailed != null) {
           handleFailed(new NetworkingException(
-            jsonObj['result'],
+            json.encode(jsonObj['result']),
             code: code,
           ));
         }

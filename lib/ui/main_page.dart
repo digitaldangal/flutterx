@@ -87,7 +87,5 @@ class _MyHomePageState extends State<MainPage>
     setState(() {
       widget.pageIndex = MainTab.values[index];
     });
-
-
   }
 }
