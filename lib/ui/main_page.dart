@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterx/data/data_facade.dart';
 import 'package:flutterx/ui/base_page.dart';
 import 'package:flutterx/ui/common.dart';
 import 'package:flutterx/ui/me/me_page.dart';
@@ -6,12 +7,12 @@ import 'package:flutterx/ui/messenger/messenger_page.dart';
 import 'package:flutterx/ui/news/news_page.dart';
 import 'package:flutterx/ui/training/training_page.dart';
 import 'package:flutterx/widgets/flutterx_bottom_navigation_bar.dart';
+import 'package:flutterx/widgets/flutterx_loading_dialog.dart';
+import 'dart:async';
 
-import 'package:flutterx/data/data_facade.dart';
 
 class MainPage extends StatefulWidget {
   static const String routeMain = "/";
-
 
   static void registerPage() {
     NewsPage.registerPage();
@@ -19,6 +20,7 @@ class MainPage extends StatefulWidget {
     MessengerPage.registerPage();
     TrainingPage.registerPage();
   }
+
   static const String routeMessenger = "/messenger";
   static const String routeNews = "/news";
   static const String routeMe = "/me";
@@ -68,7 +70,7 @@ class _MyHomePageState extends State<MainPage>
 
     BasePage page = widget.getTabPageView();
     return new Scaffold(
-      backgroundColor:  new Color(0xFFE0E0E4),
+      backgroundColor: new Color(0xFFE0E0E4),
       appBar: new AppBar(
         title: new Text(page.navTitle),
       ),
@@ -83,9 +85,21 @@ class _MyHomePageState extends State<MainPage>
   @override
   void tabSelected(int index, {String title}) {
     print('selected: $index');
-    DataFacade.shareInstance().loadingHomeChallenges();
+
+    LoadingView loadingView = new LoadingView(context);
+    showDialog(context: context,barrierDismissible: true,builder:(context)=> loadingView);
+
+    DataFacade.shareInstance().loadingHomeChallenges(dataListener:new IDataRequestLister<String>( start: () {
+    },success: (r) {
+      print('Result: ${r.runtimeType}');
+      loadingView.hidden();
+    },failed: (e) {
+      loadingView.hidden();
+    }));
+
     setState(() {
       widget.pageIndex = MainTab.values[index];
     });
+
   }
 }
