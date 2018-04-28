@@ -97,6 +97,14 @@ class _TrainingState extends State<TrainingPage> {
                 size: 13.0,
                 color: Colors.green,
               ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                    builder: (context) => new CourseDetailPage(courseId: '123',),
+                  ),
+                );
+              },
             ),
           ),
           new ListViewSectionSeparator(

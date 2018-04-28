@@ -4,6 +4,10 @@ class CourseDetailPage extends StatefulWidget {
   // This widget is the root of your application.
   static const String routeTrainingCourse = "/training/course";
 
+  final String courseId;
+
+  CourseDetailPage({this.courseId});
+
   @override
   _AppBarBottomSampleState createState() => new _AppBarBottomSampleState();
 }

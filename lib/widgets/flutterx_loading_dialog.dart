@@ -9,7 +9,7 @@ class LoadingView extends StatefulWidget {
   @override
   _LoadingViewState createState() => new _LoadingViewState();
   void hidden() {
-    Navigator.of(context).pop(); //所以pop()里面不需要传参,这里关闭对话框并获取回调的值
+    Navigator.of(context).pop('Hidden'); //所以pop()里面不需要传参,这里关闭对话框并获取回调的值
   }
 }
 
