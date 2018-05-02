@@ -86,20 +86,20 @@ class _MyHomePageState extends State<MainPage>
   void tabSelected(int index, {String title}) {
     print('selected: $index');
 
-    LoadingView loadingView = new LoadingView(context);
-    Future<String> dialogValue =  showDialog(context: context,barrierDismissible: true, builder:(context)=> loadingView);
-    dialogValue.then((String value) {
-      print('Dialog Close: ${value}');
-      loadingView = null;
-    });
-
-    DataFacade.shareInstance().loadingTopNews(dataListener:new IDataRequestLister<String>( start: () {
-    },success: (r) {
-      print('Result: ${r}');
-        loadingView?.hidden();
-    },failed: (e) {
-      loadingView?.hidden();
-    }));
+//    LoadingView loadingView = new LoadingView(context);
+//    Future<String> dialogValue =  showDialog(context: context,barrierDismissible: true, builder:(context)=> loadingView);
+//    dialogValue.then((String value) {
+//      print('Dialog Close: ${value}');
+//      loadingView = null;
+//    });
+//
+//    DataFacade.shareInstance().loadingTopNews(dataListener:new IDataRequestLister<String>( start: () {
+//    },success: (r) {
+//      print('Result: ${r}');
+//        loadingView?.hidden();
+//    },failed: (e) {
+//      loadingView?.hidden();
+//    }));
 
     setState(() {
       widget.pageIndex = MainTab.values[index];

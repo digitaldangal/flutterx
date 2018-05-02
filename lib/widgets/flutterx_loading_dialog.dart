@@ -1,5 +1,14 @@
 import 'package:meta/meta.dart';
 import "package:flutter/material.dart";
+import 'package:flutter/widgets.dart';
+import 'dart:async';
+
+
+typedef Widget LoadStartCallback();
+typedef Widget LoadingErrorErrorCallback([dynamic error]);
+typedef Widget LoadingSuccessCallback({dynamic data});
+
+typedef Future<Object> InitStateCallback();
 
 class LoadingView extends StatefulWidget {
 

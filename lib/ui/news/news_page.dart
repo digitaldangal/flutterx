@@ -6,6 +6,8 @@ import 'package:flutterx/ui/common.dart';
 import 'package:flutterx/widgets/flutterx_loading_dialog.dart';
 
 class NewsPage extends BasePage {
+  List<News> news = new List();
+
   NewsPage(MainTab tab) : super(tab) {
     this.title = 'News';
   }
@@ -26,14 +28,11 @@ class NewsPage extends BasePage {
 class _NewsState extends State<NewsPage> {
   static const Key contentKey = const Key('content');
 
-  List<News> news = new List();
-
   @override
   void initState() {
     super.initState();
     print('initState   page: $this');
-
-    if (news.length <= 0) {
+    if (widget.news.length <= 0) {
       LoadingView loadingView = null; //new LoadingView(context);
 //      Future<String> dialogValue = showDialog(
 //          context: context,
@@ -51,8 +50,8 @@ class _NewsState extends State<NewsPage> {
                 print('Result: ${r}');
 
                 setState(() {
-                  news.clear();
-                  news.addAll(r);
+                  widget.news.clear();
+                  widget.news.addAll(r);
                 });
                 loadingView?.hidden();
               },
@@ -72,28 +71,50 @@ class _NewsState extends State<NewsPage> {
     return new Scrollbar(
       key: contentKey,
       child: new ListView.builder(
-        padding: const EdgeInsets.only(bottom: 8.0,left: 16.0,right: 16.0),
-        itemCount: news.length,
+        padding: const EdgeInsets.only(
+          bottom: 8.0,
+        ),
+        itemCount: widget.news.length,
         itemBuilder: (BuildContext context, int index) {
-          var newsItem = news[index];
+          var newsItem = widget.news[index];
           var useAlternateBackground = index % 2 == 0;
-          return new GestureDetector(
-            onTap: () {},
-            child: new Row(children: [
-              new Container(
-                height: 84.0,
-                width: 84.0,
-                child: new Image.network( (newsItem.urlToImage != null? newsItem.urlToImage:'http://n.sinaimg.cn/edu/transform/500/w300h200/20180502/Tnro-fzyqqip6473001.jpg')),
+          Color color = Colors.blue;
+          if (useAlternateBackground) {
+            color = Colors.green;
+          }
+
+          Widget image = new SizedBox.fromSize(
+              size: new Size(76.0, 76.0),
+              child: new Image.network((newsItem.urlToImage != null
+                  ? newsItem.urlToImage
+                  : 'http://n.sinaimg.cn/edu/transform/500/w300h200/20180502/Tnro-fzyqqip6473001.jpg')));
+
+          return new Column(
+            children: <Widget>[
+              new GestureDetector(
+                onTap: () {},
+                child: new Row(children: [
+                  new Container(
+                      padding: const EdgeInsets.only(left: 13.0, right: 13.0),
+                      color: Colors.transparent,
+                      height: 76.0,
+                      width:76.0,
+                      child: image),
+                  new Flexible(
+                    child: new Text(
+                      newsItem.title,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: new TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ]),
               ),
-              new Flexible(
-                child: new Text(
-                  newsItem.title,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: new TextStyle(fontWeight: FontWeight.bold),
-                ),
+              new Divider(
+                height: 0.5,
+                indent: 0.0,
               ),
-            ]),
+            ],
           );
         },
       ),
