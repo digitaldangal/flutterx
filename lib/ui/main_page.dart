@@ -87,16 +87,15 @@ class _MyHomePageState extends State<MainPage>
     print('selected: $index');
 
     LoadingView loadingView = new LoadingView(context);
-
     Future<String> dialogValue =  showDialog(context: context,barrierDismissible: true, builder:(context)=> loadingView);
     dialogValue.then((String value) {
       print('Dialog Close: ${value}');
       loadingView = null;
     });
 
-    DataFacade.shareInstance().loadingHomeChallenges(dataListener:new IDataRequestLister<String>( start: () {
+    DataFacade.shareInstance().loadingTopNews(dataListener:new IDataRequestLister<String>( start: () {
     },success: (r) {
-      print('Result: ${r.runtimeType}');
+      print('Result: ${r}');
         loadingView?.hidden();
     },failed: (e) {
       loadingView?.hidden();

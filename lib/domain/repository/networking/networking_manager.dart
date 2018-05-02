@@ -6,6 +6,15 @@ import 'package:http/http.dart' as Http;
 typedef void HandleNetworkingSuccess(String jsonString);
 typedef void HandleNetworkingFailed(NetworkingException exception);
 
+/**
+ * defalut response handle logic:
+ * {
+ *    code : 200,
+ *    result:{
+ *
+ *    }
+ * }
+ */
 class IDataDisposeListener {
   HandleNetworkingSuccess handleSuccess;
   HandleNetworkingFailed handleFailed;
@@ -20,7 +29,7 @@ class IDataDisposeListener {
       if (code == HttpConstants.OK) {
         _networkLog("json: $jsonObj");
         if (handleSuccess != null) {
-          handleSuccess( json.encode(jsonObj['result']));
+          handleSuccess(json.encode(jsonObj['result']));
         }
       } else {
         if (handleFailed != null) {
@@ -49,6 +58,53 @@ class IDataDisposeListener {
   }
 }
 
+typedef bool ResponseSuccessFlag(Map<String, dynamic> rootObjJson);
+/**
+ * get the main result exclude code
+ */
+typedef String ResponseMainBody(Map<String, dynamic> rootObjJson);
+class IDataConfigurationDisposeListener extends IDataDisposeListener {
+  ResponseSuccessFlag successFlag;
+  ResponseMainBody mainBody;
+
+  IDataConfigurationDisposeListener(
+      {HandleNetworkingSuccess handleSuccess,
+      HandleNetworkingFailed handleFailed,
+      this.successFlag,
+      this.mainBody})
+      : super(handleSuccess: handleSuccess, handleFailed: handleFailed);
+
+  void onSuccess(String responseObj) {
+    if (this.successFlag != null && this.mainBody != null) {
+      try {
+        Map<String, dynamic> jsonObj = json.decode(responseObj);
+
+        if (this.successFlag(jsonObj)) {
+          _networkLog("json: $jsonObj");
+          if (handleSuccess != null) {
+            handleSuccess(this.mainBody(jsonObj));
+          }
+        } else {
+          if (handleFailed != null) {
+            handleFailed(new NetworkingException(
+              this.mainBody(jsonObj),
+              code: HttpConstants.FAILED,
+            ));
+          }
+        }
+      } catch (e) {
+        _networkLog("Exception: $e");
+        if (handleFailed != null) {
+          handleFailed(
+              new NetworkingException(e.toString(), code: HttpConstants.ERROR));
+        }
+      } finally {}
+    } else {
+      super.onSuccess(responseObj);
+    }
+  }
+}
+
 class NetworkingException implements Exception {
   int code = HttpConstants.OK;
 
@@ -66,9 +122,13 @@ class NetworkingManager {
   static void _getRequest(String url,
       {Map<String, String> headers, IDataDisposeListener lister}) async {
     _networkLog("---------------------WEBAPI GET-------------------");
-    _networkLog("---------------------$url-------------------");
+    String apiUrl = url;
+    if (!url.startsWith('http')) {
+      apiUrl = '${API_ROOT_URL}${url}';
+    }
+    _networkLog("---------------------$apiUrl-------------------");
     Http
-        .get('${API_ROOT_URL}${url}', headers: headers)
+        .get(apiUrl, headers: headers)
         .timeout(new Duration(seconds: API_TIMEOUT_SECOND))
         .then((Http.Response response) {
       _networkLog("---------------------WEBAPI-------------------");
@@ -102,10 +162,13 @@ class NetworkingManager {
       Encoding encoding,
       IDataDisposeListener lister}) {
     _networkLog("---------------------WEBAPI POST-------------------");
-    _networkLog("---------------------$url-------------------");
+    String apiUrl = url;
+    if (!url.startsWith('http:')) {
+      apiUrl = '${API_ROOT_URL}${url}';
+    }
+    _networkLog("---------------------$apiUrl-------------------");
     Http
-        .post(API_ROOT_URL + url,
-            headers: headers, body: body, encoding: encoding)
+        .post(apiUrl, headers: headers, body: body, encoding: encoding)
         .then((Http.Response response) {
       _networkLog("---------------------WEBAPI-------------------");
       _networkLog("URL: ${response.request.url}");
@@ -134,6 +197,12 @@ class NetworkingManager {
 
   static void loadingHomeChallenges(IDataDisposeListener callBack) {
     _getRequest(API_URL_CHALLENGES, lister: callBack);
+  }
+
+  static void loadingTopNews(IDataConfigurationDisposeListener callBack) {
+    _getRequest(
+        API_NEWS_TOP_URL,
+        lister: callBack);
   }
 }
 
