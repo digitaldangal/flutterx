@@ -4,28 +4,25 @@ typedef Widget StartLoadCallback();
 typedef Widget ErrorLoadCallback([dynamic error]);
 typedef Widget SuccessLoadingCallback({dynamic data});
 
-
 enum LoadingState { Error, Loading, Success }
 
-class LoadingDialog extends StatefulWidget {
-
+class LoadingView extends StatefulWidget {
   final StartLoadCallback startLoad;
   final SuccessLoadingCallback successLoad;
   final ErrorLoadCallback errorLoad;
 
-  LoadingDialog(
-      {Key key,
-      this.startLoad,
-      this.successLoad,
-      this.errorLoad,})
-      : super(key: key);
+  LoadingView({
+    Key key,
+    this.startLoad,
+    this.successLoad,
+    this.errorLoad,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => new LoadingDialogState();
+  State<StatefulWidget> createState() => new LoadingViewState();
 }
 
-class LoadingDialogState extends State<LoadingDialog> {
-
+class LoadingViewState extends State<LoadingView> {
   var _loadingState = LoadingState.Loading;
   dynamic _data;
   dynamic _error;
@@ -56,12 +53,12 @@ class LoadingDialogState extends State<LoadingDialog> {
       _loadingState = LoadingState.Error;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     if (_loadingState == LoadingState.Loading) return widget.startLoad();
 
     if (_loadingState == LoadingState.Error) return widget.errorLoad(_error);
-
     return widget.successLoad(data: _data);
   }
 }
