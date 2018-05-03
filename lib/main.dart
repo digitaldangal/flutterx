@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'data/firebase_facade.dart';
-import 'ui/common.dart';
-import 'ui/main_page.dart';
+import 'src/data/firebase_facade.dart';
+import 'src/ui/common.dart';
+import 'src/ui/main_page.dart';
 
 void main() => runApp(new MyApp());
 
@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'FlutterX333',
+      debugShowCheckedModeBanner: false,
       color: new Color(0xff00BBF8),
       theme: new ThemeData(
         primarySwatch: Colors.blue,
