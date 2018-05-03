@@ -1,17 +1,16 @@
-import 'dart:convert';
-
-//json
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-
+//json
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
+
 FirebaseAuth auth() {
   return _auth;
 }
+
 Future<FirebaseUser> signInWithGoogle() async {
   // Attempt to get the currently authenticated user
   GoogleSignInAccount currentUser = _googleSignIn.currentUser;
