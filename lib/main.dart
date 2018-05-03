@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutterx/data/firebase_facade.dart';
-import 'package:flutterx/ui/common.dart';
-import 'package:flutterx/ui/main_page.dart';
+import 'data/firebase_facade.dart';
+import 'ui/common.dart';
+import 'ui/main_page.dart';
 
 void main() => runApp(new MyApp());
 

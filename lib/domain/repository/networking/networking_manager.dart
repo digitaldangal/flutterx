@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutterx/domain/repository/networking/http_constants.dart';
+import 'http_constants.dart';
 import 'package:http/http.dart' as Http;
 
 typedef void HandleNetworkingSuccess(String jsonString);

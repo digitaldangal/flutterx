@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:flutterx/domain/entity/news.dart';
+import '../../domain/entity/news.dart';
 import 'package:meta/meta.dart';
 
 class NewsDetailPage extends StatelessWidget {

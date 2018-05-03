@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/ui/base_page.dart';
-import 'package:flutterx/ui/common.dart';
+import '../base_page.dart';
+import '../../ui/common.dart';
 
 class MessengerPage extends BasePage implements IPageRegister{
   MessengerPage(MainTab tab) : super(tab) {

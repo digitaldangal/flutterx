@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/ui/base_page.dart';
-import 'package:flutterx/ui/common.dart';
-import 'package:flutterx/widgets/listview_section_separator.dart';
-import 'package:flutterx/ui/training/course_detail.dart';
+import '../base_page.dart';
+import '../../ui/common.dart';
+import '../../widgets/listview_section_separator.dart';
+import 'course_detail.dart';
 
 class TrainingPage extends BasePage implements IPageRegister {
 

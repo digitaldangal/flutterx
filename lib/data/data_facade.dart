@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutterx/data/support/data_exception.dart';
-import 'package:flutterx/domain/entity/news.dart';
-import 'package:flutterx/domain/repository/networking/networking_manager.dart';
+import 'support/data_exception.dart';
+import '../domain/entity/news.dart';
+import '../domain/repository/networking/networking_manager.dart';
 
 typedef void Start();
 typedef void Success<T>(T result);

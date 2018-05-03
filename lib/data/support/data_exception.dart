@@ -1,4 +1,4 @@
-import 'package:flutterx/domain/repository/networking/http_constants.dart';
+import '../../domain/repository/networking/http_constants.dart';
 
 /**
  * Custom  Exception

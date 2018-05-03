@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutterx/data/data_facade.dart';
-import 'package:flutterx/domain/entity/news.dart';
-import 'package:flutterx/ui/base_page.dart';
-import 'package:flutterx/ui/common.dart';
-import 'package:flutterx/widgets/flutterx_loading_view.dart';
+import '../../data/data_facade.dart';
+import '../../domain/entity/news.dart';
+import '../base_page.dart';
+import '../../ui/common.dart';
+import '../../widgets/flutterx_loading_view.dart';
 
-import 'package:flutterx/ui/news/news_detail.dart';
+import 'news_detail.dart';
 
 class NewsPage extends BasePage {
   List<News> news = new List();

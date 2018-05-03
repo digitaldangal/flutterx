@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/ui/base_page.dart';
-import 'package:flutterx/ui/common.dart';
-import 'package:flutterx/widgets/listview_section_separator.dart';
+import '../base_page.dart';
+import '../../ui/common.dart';
+import '../../widgets/listview_section_separator.dart';
 
 class MePage extends BasePage  {
   MePage(MainTab tab) : super(tab) {

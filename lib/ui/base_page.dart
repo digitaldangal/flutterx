@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/ui/common.dart';
+import 'common.dart';
 import 'package:meta/meta.dart';
 
 abstract class BasePage extends StatefulWidget implements IPageRegister{

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/data/data_facade.dart';
-import 'package:flutterx/ui/base_page.dart';
-import 'package:flutterx/ui/common.dart';
-import 'package:flutterx/ui/me/me_page.dart';
-import 'package:flutterx/ui/messenger/messenger_page.dart';
-import 'package:flutterx/ui/news/news_page.dart';
-import 'package:flutterx/ui/training/training_page.dart';
-import 'package:flutterx/widgets/flutterx_bottom_navigation_bar.dart';
-import 'package:flutterx/widgets/flutterx_loading_dialog.dart';
+import '../data/data_facade.dart';
+import 'base_page.dart';
+import 'common.dart';
+import 'me/me_page.dart';
+import 'messenger/messenger_page.dart';
+import 'news/news_page.dart';
+import 'training/training_page.dart';
+import '../widgets/flutterx_bottom_navigation_bar.dart';
+import '../widgets/flutterx_loading_dialog.dart';
 import 'dart:async';
 
 
