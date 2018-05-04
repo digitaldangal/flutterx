@@ -14,17 +14,16 @@
     "urlToImage": "https://s4.reutersmedia.net/resources_v2/images/rcom-default.png",
     "publishedAt": "2018-04-28T10:33:17Z"
     },
-**/
+ **/
 
 class Source {
   String id;
   String name;
+
   Source({this.id, this.name});
+
   factory Source.fromJson(Map<String, dynamic> json) {
-    return new Source(
-      id: json['id'],
-      name: json['name']
-    );
+    return new Source(id: json['id'], name: json['name']);
   }
 
   @override
@@ -34,11 +33,16 @@ class Source {
 }
 
 class News {
+  News(
+      {this.source,
+      this.author,
+      this.title,
+      this.description,
+      this.url,
+      this.urlToImage,
+      this.publishedAt});
 
   Source source;
-
-  News({this.source, this.author, this.title, this.description, this.url,
-      this.urlToImage, this.publishedAt});
 
   String author;
   String title;
@@ -47,7 +51,6 @@ class News {
   String url;
   String urlToImage;
   String publishedAt;
-
 
   @override
   String toString() {

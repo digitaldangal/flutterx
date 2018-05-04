@@ -18,11 +18,10 @@ class Course {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Course &&
-              runtimeType == other.runtimeType &&
-              courseId == other.courseId ;
+      other is Course &&
+          runtimeType == other.runtimeType &&
+          courseId == other.courseId;
 
   @override
-  int get hashCode =>
-      courseId.hashCode;
+  int get hashCode => courseId.hashCode;
 }

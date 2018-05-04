@@ -20,8 +20,7 @@ class User {
         name = json['name'],
         email = json['email'];
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'userId': userId,
         'name': name,
         'email': email,
@@ -30,14 +29,12 @@ class User {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is User &&
-              runtimeType == other.runtimeType &&
-              email == other.email &&
-              name == other.name &&
-              avatarUrl == other.avatarUrl;
+      other is User &&
+          runtimeType == other.runtimeType &&
+          email == other.email &&
+          name == other.name &&
+          avatarUrl == other.avatarUrl;
 
   @override
-  int get hashCode =>
-      email.hashCode ^
-      userId.hashCode;
+  int get hashCode => email.hashCode ^ userId.hashCode;
 }
