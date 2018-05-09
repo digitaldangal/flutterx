@@ -1,5 +1,5 @@
-# flutterx
-![](https://github.com/helloclq/flutterx/blob/master/screenshot/flutter.jpg)
+#flutterx
+<img src="https://github.com/helloclq/flutterx/blob/master/screenshot/flutter.jpg" width = "80" height = "80" />
 
 ## Getting Started
 
